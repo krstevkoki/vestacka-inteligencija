@@ -1,8 +1,6 @@
 def suma_kolokviumi(rezultati):
+    # your code here
     pass
-
-
-# your code here
 
 
 if __name__ == "__main__":
