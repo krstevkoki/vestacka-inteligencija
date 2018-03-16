@@ -238,7 +238,7 @@ def tree_search(problem, fringe):
     fringe.append(Node(problem.initial))
     while fringe:
         node = fringe.pop()
-        print node.state
+        print(node.state)
         if problem.goal_test(node.state):
             return node
         fringe.extend(node.expand(problem))
@@ -318,7 +318,7 @@ def depth_limited_search(problem, limit=50):
 
 def iterative_deepening_search(problem):
 
-    for depth in xrange(sys.maxint):
+    for depth in range(sys.maxint):
         result = depth_limited_search(problem, depth)
         if result is not 'cutoff':
             return result
