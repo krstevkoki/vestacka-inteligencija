@@ -229,8 +229,8 @@ class Node:
 
 
 # ________________________________________________________________________________________________________
-#Neinformirano prebaruvanje vo ramki na drvo
-#Vo ramki na drvoto ne razresuvame jamki
+# Neinformirano prebaruvanje vo ramki na drvo
+# Vo ramki na drvoto ne razresuvame jamki
 
 def tree_search(problem, fringe):
     """Search through the successors of a problem to find a goal.
@@ -256,8 +256,8 @@ def depth_first_tree_search(problem):
 
 
 # ________________________________________________________________________________________________________
-#Neinformirano prebaruvanje vo ramki na graf
-#Osnovnata razlika e vo toa sto ovde ne dozvoluvame jamki t.e. povtoruvanje na sostojbi
+# Neinformirano prebaruvanje vo ramki na graf
+# Osnovnata razlika e vo toa sto ovde ne dozvoluvame jamki t.e. povtoruvanje na sostojbi
 
 def graph_search(problem, fringe):
     """Search through the successors of a problem to find a goal.
@@ -305,7 +305,7 @@ def depth_limited_search(problem, limit=50):
                 result = recursive_dls(successor, problem, limit)
                 if result == 'cutoff':
                     cutoff_occurred = True
-                elif result != None:
+                elif result is not None:
                     return result
         if cutoff_occurred:
             return 'cutoff'
@@ -317,21 +317,19 @@ def depth_limited_search(problem, limit=50):
 
 
 def iterative_deepening_search(problem):
-
-    for depth in range(sys.maxint):
+    for depth in range(sys.maxsize):
         result = depth_limited_search(problem, depth)
         if result is not 'cutoff':
             return result
 
 
-
 # _________________________________________________________________________________________________________
-#PRIMER 1 : PROBLEM SO DVA SADA SO VODA
-#OPIS: Dadeni se dva sada J0 i J1 so kapaciteti C0 i C1
-#Na pocetok dvata sada se polni. Inicijalnata sostojba moze da se prosledi na pocetok
-#Problemot e kako da se stigne do sostojba vo koja J0 ke ima G0 litri, a J1 ke ima G1 litri
-#AKCII: 1. Da se isprazni bilo koj od sadovite
-#2. Da se prefrli tecnosta od eden sad vo drug so toa sto ne moze da se nadmine kapacitetot na sadovite
+# PRIMER 1 : PROBLEM SO DVA SADA SO VODA
+# OPIS: Dadeni se dva sada J0 i J1 so kapaciteti C0 i C1
+# Na pocetok dvata sada se polni. Inicijalnata sostojba moze da se prosledi na pocetok
+# Problemot e kako da se stigne do sostojba vo koja J0 ke ima G0 litri, a J1 ke ima G1 litri
+# AKCII: 1. Da se isprazni bilo koj od sadovite
+# 2. Da se prefrli tecnosta od eden sad vo drug so toa sto ne moze da se nadmine kapacitetot na sadovite
 # Moze da ima i opcionalen tret vid na akcii 3. Napolni bilo koj od sadovite (studentite da ja implementiraat ovaa varijanta)
 # ________________________________________________________________________________________________________
 
@@ -340,6 +338,9 @@ class WJ(Problem):
     Opcionalno moze za nekoj od sadovite da se sretne i vrednost '*' sto znaci deka e nebitno kolku ima vo toj sad
     GOAL: Predefinirana sostojba do kade sakame da stigneme. Ako ne interesira samo eden sad za drugiot mozeme da stavime '*'
     PROBLEM: Se specificiraat kapacitetite na sadovite, pocetna sostojba i cel """
+
+    def value(self):
+        raise NotImplementedError
 
     def __init__(self, capacities=(5, 2), initial=(5, 0), goal=(0, 1)):
         self.capacities = capacities
@@ -380,26 +381,28 @@ class WJ(Problem):
         possible = self.successor(state)
         return possible[action]
 
+
 # So vaka definiraniot problem mozeme da gi koristime site neinformirani prebaruvanja
 # Vo prodolzenie se dadeni mozni povici (vnimavajte za da moze da napravite povik mora da definirate problem)
-#
-#    WJInstance = WJ((5, 2), (5, 2), ('*', 1))
-#    print WJInstance
-#
-#    answer1 = breadth_first_tree_search(WJInstance)
-#    print answer1.solve()
-#
-#    answer2 = depth_first_tree_search(WJInstance) #vnimavajte na ovoj povik, moze da vleze vo beskonecna jamka
-#    print answer2.solve()
-#
-#    answer3 = breadth_first_graph_search(WJInstance)
-#    print answer3.solve()
-#
-#    answer4 = depth_first_graph_search(WJInstance)
-#    print answer4.solve()
-#
-#    answer5 = depth_limited_search(WJInstance)
-#    print answer5.solve()
-#
-#    answer6 = iterative_deepening_search(WJInstance)
-#    print answer6.solve()
+if __name__ == "__main__":
+    # WJInstance = WJ((5, 2), (5, 2), ('*', 1))
+    # print(WJInstance)
+    #
+    # answer1 = breadth_first_tree_search(WJInstance)
+    # print(answer1.solve())
+    #
+    # answer2 = depth_first_tree_search(WJInstance)  # vnimavajte na ovoj povik, moze da vleze vo beskonecna jamka
+    # print(answer2.solve())
+    #
+    # answer3 = breadth_first_graph_search(WJInstance)
+    # print(answer3.solve())
+    #
+    # answer4 = depth_first_graph_search(WJInstance)
+    # print(answer4.solve())
+    #
+    # answer5 = depth_limited_search(WJInstance)
+    # print(answer5.solve())
+    #
+    # answer6 = iterative_deepening_search(WJInstance)
+    # print(answer6.solve())
+    pass  # comment pass after uncommenting the lines above
