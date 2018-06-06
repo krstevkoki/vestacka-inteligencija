@@ -412,7 +412,10 @@ class Molecule(Problem):
 
 def atoms_connected(state):
     H1_i, H1_j, O_i, O_j, H2_i, H2_j = state
-    return H1_i == O_i and H2_i == O_i and H1_j == (O_j - 1) and H2_j == (O_j + 1)
+    if H1_i == O_i and  H1_j == (O_j - 1) :
+        if H2_i == O_i and H2_j == (O_j + 1):
+            return True
+    return False
 
 
 def upAtomH1(state):
