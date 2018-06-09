@@ -357,9 +357,9 @@ class Explorer(Problem):
                     (C_i != P3_new[0] or C_j_new != P3_new[1]) and
                     (C_i != P3_new[0] - 1 or C_j_new != P3_new[1]) and
                     ((C_i != P2_new[0] or C_j_new != P2_new[1]) and
-                     (C_i != P2_new[0] or C_j_new != P2_new[1]) and
-                     (C_i != P2_new[0] + 1 or C_j_new != P2_new[1] - 1) and
-                     (C_i != P2_new[0] or C_j_new != P2_new[1] - 1))):
+                     (C_i != P2_new[0] + 1 or C_j_new != P2_new[1]) and
+                     (C_i != P2_new[0] or C_j_new != P2_new[1] - 1) and
+                     (C_i != P2_new[0] + 1 or C_j_new != P2_new[1] - 1))):
                 Statenew = (C_i, C_j_new, P1_new[0], P1_new[1], P1_new[2], P2_new[0], P2_new[1], P2_new[2],
                             P3_new[0], P3_new[1], P3_new[2])
                 successors["Levo"] = Statenew
@@ -373,9 +373,9 @@ class Explorer(Problem):
                     (C_i != P3_new[0] or C_j_new != P3_new[1]) and
                     (C_i != P3_new[0] - 1 or C_j_new != P3_new[1]) and
                     ((C_i != P2_new[0] or C_j_new != P2_new[1]) and
-                     (C_i != P2_new[0] or C_j_new != P2_new[1]) and
-                     (C_i != P2_new[0] + 1 or C_j_new != P2_new[1] - 1) and
-                     (C_i != P2_new[0] or C_j_new != P2_new[1] - 1))):
+                     (C_i != P2_new[0] + 1 or C_j_new != P2_new[1]) and
+                     (C_i != P2_new[0] or C_j_new != P2_new[1] - 1) and
+                     (C_i != P2_new[0] + 1 or C_j_new != P2_new[1] - 1))):
                 Statenew = (C_i, C_j_new, P1_new[0], P1_new[1], P1_new[2], P2_new[0], P2_new[1], P2_new[2],
                             P3_new[0], P3_new[1], P3_new[2])
                 successors["Desno"] = Statenew
@@ -389,9 +389,9 @@ class Explorer(Problem):
                     (C_i_new != P3_new[0] or C_j != P3_new[1]) and
                     (C_i_new != P3_new[0] - 1 or C_j != P3_new[1]) and
                     ((C_i_new != P2_new[0] or C_j != P2_new[1]) and
-                     (C_i_new != P2_new[0] or C_j != P2_new[1]) and
-                     (C_i_new != P2_new[0] + 1 or C_j != P2_new[1] - 1) and
-                     (C_i_new != P2_new[0] or C_j != P2_new[1] - 1))):
+                     (C_i_new != P2_new[0] + 1 or C_j != P2_new[1]) and
+                     (C_i_new != P2_new[0] or C_j != P2_new[1] - 1) and
+                     (C_i_new != P2_new[0] + 1 or C_j != P2_new[1] - 1))):
                 Statenew = (C_i_new, C_j, P1_new[0], P1_new[1], P1_new[2], P2_new[0], P2_new[1], P2_new[2],
                             P3_new[0], P3_new[1], P3_new[2])
                 successors["Dolu"] = Statenew
@@ -405,9 +405,9 @@ class Explorer(Problem):
                     (C_i_new != P3_new[0] or C_j != P3_new[1]) and
                     (C_i_new != P3_new[0] - 1 or C_j != P3_new[1]) and
                     ((C_i_new != P2_new[0] or C_j != P2_new[1]) and
-                     (C_i_new != P2_new[0] or C_j != P2_new[1]) and
-                     (C_i_new != P2_new[0] + 1 or C_j != P2_new[1] - 1) and
-                     (C_i_new != P2_new[0] or C_j != P2_new[1] - 1))):
+                     (C_i_new != P2_new[0] + 1 or C_j != P2_new[1]) and
+                     (C_i_new != P2_new[0] or C_j != P2_new[1] - 1) and
+                     (C_i_new != P2_new[0] + 1 or C_j != P2_new[1] - 1))):
                 Statenew = (C_i_new, C_j, P1_new[0], P1_new[1], P1_new[2], P2_new[0], P2_new[1], P2_new[2],
                             P3_new[0], P3_new[1], P3_new[2])
                 successors["Gore"] = Statenew
@@ -433,21 +433,21 @@ class Explorer(Problem):
 
 def updateP1(state):
     P1_i, P1_j, P1_nasoka = state[2], state[3], state[4]
-    if (P1_i == 2 and P1_j == 0) or (P1_i == 2 and P1_j == 4):
+    if (P1_i == 2 and P1_j == 0 and P1_nasoka == -1) or (P1_i == 2 and P1_j == 4 and P1_nasoka == 1):
         P1_nasoka *= -1
     return P1_i, P1_j + P1_nasoka, P1_nasoka
 
 
 def updateP2(state):
     P2_i, P2_j, P2_nasoka = state[5], state[6], state[7]
-    if (P2_i == 5 and P2_j == 5) or (P2_i == 9 and P2_j == 1):
+    if (P2_i == 5 and P2_j == 5 and P2_nasoka == -1) or (P2_i == 9 and P2_j == 1 and P2_nasoka == 1):
         P2_nasoka *= -1
     return P2_i + P2_nasoka, P2_j - P2_nasoka, P2_nasoka
 
 
 def updateP3(state):
     P3_i, P3_j, P3_nasoka = state[8], state[9], state[10]
-    if (P3_i == 10 and P3_j == 9) or (P3_i == 6 and P3_j == 9):
+    if (P3_i == 10 and P3_j == 8 and P3_nasoka == 1) or (P3_i == 6 and P3_j == 8 and P3_nasoka == -1):
         P3_nasoka *= -1
     return P3_i + P3_nasoka, P3_j, P3_nasoka
 
@@ -461,7 +461,7 @@ if __name__ == "__main__":
 
     # Vasiot kod pisuvajte go pod ovoj komentar
     goal = [KukaRedica, KukaKolona]
-    initial_state = (CoveceRedica, CoveceKolona, 2, 2, -1, 7, 3, -1, 8, 9, 1)
+    initial_state = (CoveceRedica, CoveceKolona, 2, 2, -1, 7, 3, -1, 8, 8, 1)
     problem = Explorer(initial_state, goal)
 
     answer = astar_search(problem)
