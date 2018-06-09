@@ -596,15 +596,15 @@ if __name__ == "__main__":
 
     # romania_problem = GraphProblem('Arad', 'Bucharest', romania_map)
 
-    # answer1=breadth_first_tree_search(romania_problem)
-    # print answer1.solve()
+    # answer1 = breadth_first_tree_search(romania_problem)
+    # print(answer1.solve())
 
-    # answer2=breadth_first_graph_search(romania_problem)
-    # print answer2.solve()
+    # answer2 = breadth_first_graph_search(romania_problem)
+    # print(answer2.solve())
 
-    # answer3=uniform_cost_search(romania_problem)
-    # print answer3.solve()
+    # answer3 = uniform_cost_search(romania_problem)
+    # print(answer3.solve())
 
-    # answer4=astar_search(romania_problem)
-    # print answer4.solve()
+    # answer4 = astar_search(romania_problem)
+    # print(answer4.solve())
     pass
