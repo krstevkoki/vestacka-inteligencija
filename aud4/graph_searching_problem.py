@@ -594,6 +594,14 @@ if __name__ == "__main__":
         L=dict(M=distance(graph_map.locations['L'], graph_map.locations['M']))
     ))
 
+    graph_map.locations = dict(
+        A=(1, 8), B=(4, 8), C=(10, 8),
+        D=(15, 8), E=(19, 8), F=(9, 5),
+        G=(11, 6), H=(1, 2), I=(5, 2),
+        J=(8, 2), K=(13, 2), L=(15, 2),
+        M=(19, 2)
+    )
+
     problem = GraphProblem(Pocetok, Kraj, graph_map)
 
     answer = astar_search(problem)
