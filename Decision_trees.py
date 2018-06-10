@@ -22,7 +22,8 @@ def divideset(rows, column, value):
     # the first group (true) or the second group (false)
     split_function = None
     if isinstance(value, int) or isinstance(value, float):  # ako vrednosta so koja sporeduvame e od tip int ili float
-        # split_function=lambda row:row[column]>=value # togas vrati funkcija cij argument e row i vrakja vrednost true ili false
+        # split_function=lambda row:row[column]>=value # togas vrati funkcija cij argument e row i vrakja vrednost
+        # true ili false
         split_function = sporedi_broj
     else:
         # split_function=lambda row:row[column]==value # ako vrednosta so koja sporeduvame e od drug tip (string)
@@ -112,15 +113,14 @@ def buildtree(rows, scoref=entropy):
     if best_gain > 0:
         trueBranch = buildtree(best_sets[0])
         falseBranch = buildtree(best_sets[1])
-        return decisionnode(col=best_criteria[0], value=best_criteria[1],
-                            tb=trueBranch, fb=falseBranch)
+        return decisionnode(col=best_criteria[0], value=best_criteria[1], tb=trueBranch, fb=falseBranch)
     else:
         return decisionnode(results=uniquecounts(rows))
 
 
 def printtree(tree, indent=''):
     # Is this a leaf node?
-    if tree.results != None:
+    if tree.results is not None:
         print(str(tree.results))
     else:
         # Print the criteria
@@ -133,7 +133,7 @@ def printtree(tree, indent=''):
 
 
 def classify(observation, tree):
-    if tree.results != None:
+    if tree.results is not None:
         return tree.results
     else:
         vrednost = observation[tree.col]
@@ -153,27 +153,31 @@ def classify(observation, tree):
         return classify(observation, branch)
 
 
-my_data = [['slashdot', 'USA', 'yes', 18, 'None'],
-           ['google', 'France', 'yes', 23, 'Premium'],
-           ['digg', 'USA', 'yes', 24, 'Basic'],
-           ['kiwitobes', 'France', 'yes', 23, 'Basic'],
-           ['google', 'UK', 'no', 21, 'Premium'],
-           ['(direct)', 'New Zealand', 'no', 12, 'None'],
-           ['(direct)', 'UK', 'no', 21, 'Basic'],
-           ['google', 'USA', 'no', 24, 'Premium'],
-           ['slashdot', 'France', 'yes', 19, 'None'],
-           ['digg', 'USA', 'no', 18, 'None'],
-           ['google', 'UK', 'no', 18, 'None'],
-           ['kiwitobes', 'UK', 'no', 19, 'None'],
-           ['digg', 'New Zealand', 'yes', 12, 'Basic'],
-           ['slashdot', 'UK', 'no', 21, 'None'],
-           ['google', 'UK', 'yes', 18, 'Basic'],
-           ['kiwitobes', 'France', 'yes', 19, 'Basic']]
+my_data = [
+    ['slashdot', 'USA', 'yes', 18, 'None'],
+    ['google', 'France', 'yes', 23, 'Premium'],
+    ['digg', 'USA', 'yes', 24, 'Basic'],
+    ['kiwitobes', 'France', 'yes', 23, 'Basic'],
+    ['google', 'UK', 'no', 21, 'Premium'],
+    ['(direct)', 'New Zealand', 'no', 12, 'None'],
+    ['(direct)', 'UK', 'no', 21, 'Basic'],
+    ['google', 'USA', 'no', 24, 'Premium'],
+    ['slashdot', 'France', 'yes', 19, 'None'],
+    ['digg', 'USA', 'no', 18, 'None'],
+    ['google', 'UK', 'no', 18, 'None'],
+    ['kiwitobes', 'UK', 'no', 19, 'None'],
+    ['digg', 'New Zealand', 'yes', 12, 'Basic'],
+    ['slashdot', 'UK', 'no', 21, 'None'],
+    ['google', 'UK', 'yes', 18, 'Basic'],
+    ['kiwitobes', 'France', 'yes', 19, 'Basic']
+]
 
-test_cases = [['google', 'MK', 'no', 24, 'Unknown'],
-              ['google', 'MK', 'no', 15, 'Unknown'],
-              ['digg', 'UK', 'yes', 21, 'Unknown'],
-              ['digg', 'UK', 'no', 25, 'Unknown']]
+test_cases = [
+    ['google', 'MK', 'no', 24, 'Unknown'],
+    ['google', 'MK', 'no', 15, 'Unknown'],
+    ['digg', 'UK', 'yes', 21, 'Unknown'],
+    ['digg', 'UK', 'no', 25, 'Unknown']
+]
 
 # my_data=[line.split('\t') for line in file('decision_tree_example.txt')]
 
@@ -190,4 +194,4 @@ if __name__ == "__main__":
     # drawtree(t)
     printtree(t)
     for test_case in test_cases:
-        print("Nepoznat slucaj:", test_case, " Klasifikacija: ", classify(test_case, t))
+        print("Nepoznat slucaj:", test_case, "\nKlasifikacija: ", classify(test_case, t))
