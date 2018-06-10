@@ -194,4 +194,4 @@ if __name__ == "__main__":
     # drawtree(t)
     printtree(t)
     for test_case in test_cases:
-        print("Nepoznat slucaj:", test_case, "\nKlasifikacija: ", classify(test_case, t))
+        print("Nepoznat slucaj:", test_case, "\nKlasifikacija:", classify(test_case, t))
