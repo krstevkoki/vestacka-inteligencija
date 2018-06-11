@@ -269,20 +269,20 @@ if __name__ == "__main__":
     network1 = initialize_network(n_inputs, 3, n_outputs)
     train_network(network1, testing_data, 0.3, 50, n_outputs)
 
-    normalized = minMaxNrom(deepcopy(training_data), deepcopy(testing_data))
+    new_data, new_testing_data = minMaxNrom(deepcopy(training_data), deepcopy(testing_data))
     network2 = initialize_network(n_inputs, 3, n_outputs)
-    train_network(network2, normalized[0], 0.3, 50, n_outputs)
+    train_network(network2, new_data, 0.3, 50, n_outputs)
 
     counter_first = counter_second = 0
     for test in testing_data:
         if test[-1] == predict(network1, test):
             counter_first += 1
 
-    for test in normalized[1]:
+    for test in new_testing_data:
         if test[-1] == predict(network2, test):
             counter_second += 1
 
-    for test in normalized[1]:
+    for test in new_testing_data:
         print(test)
     print("Prva mrezha:")
     print(counter_first)
