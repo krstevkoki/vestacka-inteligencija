@@ -92,6 +92,11 @@ def train_network(network, train, l_rate, n_epoch, n_outputs):
         print(('>epoch=%d, lrate=%.3f, error=%.3f' % (epoch, l_rate, sum_error)))
 
 
+def predict(network, row):
+    outputs = forward_propagate(network, row)
+    return outputs.index(max(outputs))
+
+
 # Test training backprop algorithm
 seed(1)
 dataset = [[2.7810836, 2.550537003, 0],
