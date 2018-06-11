@@ -336,4 +336,4 @@ if __name__ == "__main__":
         if sorted1[0][0] != sorted2[0][0]:
             print("KONTRADIKCIJA")
         else:
-            print(sorted1[0])
+            print(sorted1[0][0])
